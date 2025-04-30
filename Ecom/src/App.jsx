@@ -10,12 +10,13 @@ import Login from './pages/Login'
 import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
 import Navbar from './component/Navbar'
+import assets from './assets/frontend_assets/assets'
 
 
 function App() {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
-      <Navbar />
+      <Navbar className=' sticky top-0 left-0 z-50' />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/collection' element={<Collection />} />

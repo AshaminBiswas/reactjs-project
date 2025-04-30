@@ -3,11 +3,12 @@ import { NavLink, Link } from 'react-router-dom'
 import { IoSearch } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { FaCartPlus } from "react-icons/fa";
+import { assets } from '../assets/frontend_assets/assets';
 function Navbar() {
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
       <div className="logo">
-        LoGo
+        <img src={assets.logo} alt="" />
       </div>
 
       <ul className='hidden sm:flex gap-5 text-gray-700'>
