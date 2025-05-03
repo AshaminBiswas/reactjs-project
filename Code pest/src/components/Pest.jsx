@@ -86,7 +86,7 @@ function Pest() {
                     <button className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl' onClick={() => handleDelete(pest._id)}><MdDeleteOutline /></button>
                     <button className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl'>
 
-                      <NavLink to={`/pest/${pest._id}`}>
+                      <NavLink to={`/note/${pest._id}`}>
                         <GrView />
                       </NavLink>
                     </button>

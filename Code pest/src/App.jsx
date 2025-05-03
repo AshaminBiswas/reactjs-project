@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/pest",
+    path: "/note",
     element: (
       <>
         <Navbar />
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/pest/:id",
+    path: "/note/:id",
     element: (
       <>
         <Navbar />

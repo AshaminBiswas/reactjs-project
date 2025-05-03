@@ -75,7 +75,8 @@ function Home() {
   }
   return (
     <>
-      <div className='md:px-8 px-2 md:py-4 py-2 overflow-hidden '> {/* Added overflow-hidden */}
+      <div className='md:px-8 px-2 md:py-4 py-2 overflow-hidden '>
+        <h1 className='text-center text-3xl font-semibold'>Create Your Notes</h1> {/* Added overflow-hidden */}
         <div className='flex items-center justify-between gap-2'>
           <input
             type="text"
