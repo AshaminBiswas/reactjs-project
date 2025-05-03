@@ -75,27 +75,27 @@ function Home() {
   }
   return (
     <>
-      <div className='px-8 py-4 overflow-hidden'> {/* Added overflow-hidden */}
-        <div>
+      <div className='md:px-8 px-2 md:py-4 py-2 overflow-hidden '> {/* Added overflow-hidden */}
+        <div className='flex items-center justify-between gap-2'>
           <input
             type="text"
-            placeholder='Enter Title Here..'
+            placeholder='Enter your title here..'
             value={title}
             onChange={(e) => { setTitle(e.target.value) }}
-            className='p-2 rounded-xl outline-none border w-2/4'
+            className='p-2 rounded-xl outline-none border w-3/4 text-2xl font-semibold'
           />
-          <button className='px-8 py-4 w-2/4' onClick={createPest}>
-            {pestId ? "Update My Pest" : "Create My Pest"}
+          <button className='md:px-8 w-1/4 px- py-3 rounded-2xl cursor: pointer bg-green-600 text-xl ' onClick={createPest}>
+            {pestId ? "Update" : "Create"}
           </button>
         </div>
 
-        <div className='mt-4'>
+        <div className='md:mt-4 mt-2'>
           <textarea
             value={value}
-            placeholder='Enter Content here'
+            placeholder='Enter your note here'
             onChange={(e) => { setValue(e.target.value) }}
             rows={15}
-            className='w-full border outline-none rounded-2xl p-4 scrollbar-hide' /* Added scrollbar-hide */
+            className='w-full border outline-none rounded-2xl p-4 scrollbar-hide text-[16px]' /* Added scrollbar-hide */
           ></textarea>
         </div>
       </div>

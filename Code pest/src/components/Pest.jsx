@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromPest } from '../features/slices/Pest';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom'
-// import { FaShare } from "react-icons/fa";
-// ...existing imports...
+import { FaRegShareSquare } from "react-icons/fa";
+import { GrView } from "react-icons/gr";
+import { MdDeleteOutline } from "react-icons/md";
+import { IoCopyOutline } from "react-icons/io5";
+import { FaRegEdit } from "react-icons/fa";
+
+
 function Pest() {
   const pests = useSelector((state) => state.pest.pest);
 
@@ -37,15 +42,15 @@ function Pest() {
     }
   }
   return (
-    <div className='px-8 py-4'>
-      <h1 className='text-center text-3xl font-semibold '>List of Pests</h1>
+    <div className='md:px-8 px-2 py-4'>
+      <h1 className='text-center text-3xl font-semibold '>List of Notes</h1>
 
       <div className='flex justify-center p-4 items-center'>
         <input type="search"
-          placeholder='Search Your Pest'
+          placeholder='Search Your Notes Here..'
           value={searchTitle}
           onChange={(e) => setSearchTitle(e.target.value)}
-          className='w-1/2 p-4 rounded-3xl outline-none border'
+          className='md:w-1/2 w-full p-4 rounded-3xl outline-none border'
         />
       </div>
       <div>
@@ -53,7 +58,7 @@ function Pest() {
           filteredData.length > 0 &&
           filteredData.map((pest) => {
             return (
-              <div key={pest._id} className="bg-white rounded-lg shadow-md p-4 mb-4">
+              <div key={pest._id} className="bg-white rounded-lg   border p-4 mb-4">
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-xl font-semibold">{pest.title}</h2>
                   <span className="text-sm text-gray-500">
@@ -66,30 +71,30 @@ function Pest() {
                     })}
                   </span>
                 </div>
-                <div className="mb-4 text-gray-700">{pest.content}</div>
+                <div className="mb-4 text-gray-700 max-h[50px] overflow-hidden">{pest.content}</div>
                 <div className='flex gap-4'>
                   <div className='flex gap-4'>
-                    <button>
+                    <button className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl'>
                       <NavLink to={`/?pestId=${pest._id}`}>
-                        Edit
+                        <FaRegEdit />
                       </NavLink>
                     </button>
-                    <button onClick={() => {
+                    <button className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl' onClick={() => {
                       navigator.clipboard.writeText(pest.content)
                       toast.success(" Copied To Clip Board")
-                    }} >copy</button>
-                    <button onClick={() => handleDelete(pest._id)}>delete</button>
-                    <button >
+                    }} ><IoCopyOutline /></button>
+                    <button className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl' onClick={() => handleDelete(pest._id)}><MdDeleteOutline /></button>
+                    <button className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl'>
 
                       <NavLink to={`/pest/${pest._id}`}>
-                        view
+                        <GrView />
                       </NavLink>
                     </button>
                     <button
                       className='bg-green-700 px-4 py-1.5 rounded-2xl text-white cursor-pointer hover:bg-green-500 text-xl'
                       onClick={() => handleShare(pest)}
                     >
-                      Share
+                      <FaRegShareSquare />
                     </button>
                   </div>
                 </div>

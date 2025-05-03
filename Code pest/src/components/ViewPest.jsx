@@ -17,13 +17,13 @@ function ViewPest() {
 
   return (
     <>
-      <div className='px-8 py-4'>
+      <div className='md:px-8 px-2 py-4'>
         <div>
           <input
             type="text"
             placeholder='Enter Title Here..'
             value={pest.title}
-            className='p-2 rounded-xl outline-none border w-2/4'
+            className='p-2 rounded-xl outline-none border w-full font-semibold text-2xl'
             disabled
           />
         </div>
@@ -32,9 +32,9 @@ function ViewPest() {
           <textarea
             value={pest.content}
             placeholder='Enter Content There'
-            rows={20}
+            rows={15}
             disabled
-            className='w-3/4 border outline-none rounded-2xl p-4'
+            className='w-full border outline-none rounded-2xl p-4'
           ></textarea>
         </div>
       </div>
