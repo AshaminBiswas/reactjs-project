@@ -27,16 +27,16 @@ export const pestSlice = createSlice({
     },
 
     updateToPest: (state, action) => {
-      // You can implement logic here if needed
       const pest = action.payload;
-      const index = state.pest.findindex((item) => {
-        item._id === pest._id;
-      });
+      const index = state.pest.findIndex((item) => item._id === pest._id); // Fixed return
 
-      if (index >= 0) {
+      if (index !== -1) {
+        // Changed condition to check for -1
         state.pest[index] = pest;
         localStorage.setItem("pest", JSON.stringify(state.pest));
-        toast.success("Pest Update Successfully");
+        toast.success("Pest Updated Successfully");
+      } else {
+        toast.error("Pest not found"); // Added error handling
       }
     },
 
@@ -47,10 +47,14 @@ export const pestSlice = createSlice({
     },
 
     removeFromPest: (state, action) => {
-      const idToRemove = action.payload;
-      state.pest = state.pest.filter((item) => item.id !== idToRemove);
-      localStorage.setItem("pest", JSON.stringify(state.pest));
-      toast.success("Pest Removed");
+      const pestId = action.payload;
+      const index = state.pest.findIndex((item) => item._id === pestId);
+
+      if (index >= 0) {
+        state.pest.splice(index, 1);
+        localStorage.setItem("pest", JSON.stringify(state.pest));
+        toast.success("Pest Removed");
+      }
     },
   },
 });
