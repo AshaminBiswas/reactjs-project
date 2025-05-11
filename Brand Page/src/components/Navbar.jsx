@@ -1,10 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/nike logo.png';
 import { useState, useEffect } from 'react';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const navigator = useNavigate()
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
@@ -21,19 +21,23 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  function handleNavigate() {
+    navigator('/')
+  }
+
   const linkStyle = ({ isActive }) =>
     isActive
       ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-semibold'
       : 'hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-colors duration-300';
 
   return (
-    <nav className="w-full bg-gradient-to-r from-indigo-100 via-purple-50 to-pink-50 shadow-md py-3">
+    <nav className="w-full bg-gradient-to-r from-indigo-100 via-purple-50 to-pink-50 shadow-md py-3 top-0 sticky">
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         {/* Desktop and Mobile Navigation */}
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex-shrink-0 py-2">
-            <img src={logo} alt="Nike logo" className="h-10 w-auto" />
+          <div className="flex-shrink-0 py-2 cursor-pointer">
+            <img onClick={handleNavigate} src={logo} alt="Nike logo" className="h-10 w-auto" />
           </div>
 
           {/* Mobile menu button */}
@@ -80,8 +84,8 @@ function Navbar() {
           </div>
 
           {/* Desktop navigation links */}
-          <div className="hidden md:flex md:justify-between md:items-center md:flex-1 md:px-10">
-            <ul className="flex space-x-12 text-gray-600 mx-4">
+          <div className="hidden md:flex md:justify-between md:items-center md:flex-1 md:px-8">
+            <ul className="flex space-x-4 text-gray-600 mx-4">
               <li className="px-2">
                 <NavLink to="/new-featured" className={linkStyle}>
                   New & Featured
@@ -107,7 +111,7 @@ function Navbar() {
             {/* Login button for desktop */}
             <div className="ml-6">
               <NavLink to="/login">
-                <button className="px-6 py-2 text-white rounded bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300">
+                <button className="px-6 py-2 text-white rounded bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300 cursor-pointer">
                   Login
                 </button>
               </NavLink>
