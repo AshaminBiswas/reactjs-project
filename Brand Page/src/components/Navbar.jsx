@@ -31,7 +31,7 @@ function Navbar() {
       : 'hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-colors duration-300';
 
   return (
-    <nav className="w-full bg-gradient-to-r from-indigo-100 via-purple-50 to-pink-50 shadow-md py-3 top-0 sticky">
+    <nav className="w-full bg-gradient-to-r from-indigo-100 via-purple-50 to-pink-50 shadow-md py-1 top-0 sticky z-999">
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         {/* Desktop and Mobile Navigation */}
         <div className="flex justify-between items-center">
