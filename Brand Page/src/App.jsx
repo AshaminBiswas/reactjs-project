@@ -22,7 +22,8 @@ const Shop = lazy(() => import('./components/Shop'));
 const HeroOne = lazy(() => import('./components/HeroOne'))
 const HeroSecOne = lazy(() => import('./components/HeroSecOne'))
 const HeroSecTow = lazy(() => import('./components/HeroSecTow'))
-
+const HeroSecThree = lazy(() => import('./components/HeroSecThree'))
+const MaxAirDn8 = lazy(() => import('./components/MaxAirDn8'))
 
 
 
@@ -65,6 +66,7 @@ function Hero() {
       <HeroOne />
       <HeroSecOne />
       <HeroSecTow />
+      <HeroSecThree />
     </>
   );
 }
@@ -146,6 +148,10 @@ const router = createBrowserRouter([
       {
         path: 'sale',
         element: <SaleOn />,
+      },
+      {
+        path: 'max-air-dn8-products',
+        element: <MaxAirDn8 />
       }
     ],
   },
