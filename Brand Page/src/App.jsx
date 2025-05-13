@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider, Outlet, useNavigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import './App.css';
+import DontMissPopularProduct from './components/DontMissPopularProduct';
+import HeroSecFour from './components/HeroSecFour';
 
 // Component imports with lazy loading for improved performance
 const Navbar = lazy(() => import('./components/Navbar'));
@@ -24,7 +26,7 @@ const HeroSecOne = lazy(() => import('./components/HeroSecOne'))
 const HeroSecTow = lazy(() => import('./components/HeroSecTow'))
 const HeroSecThree = lazy(() => import('./components/HeroSecThree'))
 const MaxAirDn8 = lazy(() => import('./components/MaxAirDn8'))
-
+const Cart = lazy(() => import('./components/Cart'))
 
 
 // Loading component for suspense fallback
@@ -67,6 +69,7 @@ function Hero() {
       <HeroSecOne />
       <HeroSecTow />
       <HeroSecThree />
+      <HeroSecFour />
     </>
   );
 }
@@ -152,6 +155,14 @@ const router = createBrowserRouter([
       {
         path: 'max-air-dn8-products',
         element: <MaxAirDn8 />
+      },
+      {
+        path: 'cart',
+        element: <Cart />
+      },
+      {
+        path: 'dont-miss-popular-product',
+        element: <DontMissPopularProduct />
       }
     ],
   },
