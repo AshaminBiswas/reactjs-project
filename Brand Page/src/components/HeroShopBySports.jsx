@@ -1,20 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { MdArrowBackIosNew, MdArrowForwardIos, MdOutlineAddShoppingCart } from 'react-icons/md';
+import { MdArrowBackIosNew, MdArrowForwardIos, } from 'react-icons/md';
+
+//import images
+import basketBall from '../assets/sports/basket ball.jpg'
+import dance from '../assets/sports/dance.jpg'
+import football from '../assets/sports/football.jpg'
+import running from '../assets/sports/running.jpg'
+import skate from '../assets/sports/scaketing.jpg'
+import tennis from '../assets/sports/TENNIS.jpg'
+import gym from '../assets/sports/Training Gym.jpg'
+import yoga from '../assets/sports/yoga.jpg'
+function HeroShopBySports() {
 
 
-//import image for shop by icons
-import AirForce from '../assets/Shop by icons/Air force 1.jpg'
-import AirJordan from '../assets/Shop by icons/Air Jordan 1.jpg'
-import Blazer from '../assets/Shop by icons/BLAZER.jpg'
-import Cortez from '../assets/Shop by icons/CORTEZ.jpg'
-import Dunks from '../assets/Shop by icons/DUNK.jpg'
-import Metcon from '../assets/Shop by icons/METCON.jpg'
-import Pegasus from '../assets/Shop by icons/pegasus 41.jpg'
-import V2k from '../assets/Shop by icons/v2k.jpg'
-import Vomero from '../assets/Shop by icons/VOMERO.jpg'
-import Vomero18 from '../assets/Shop by icons/VOMERO18.jpg'
-function HeroSecThree() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(4);
   const sliderRef = useRef(null);
@@ -23,69 +22,55 @@ function HeroSecThree() {
   const cardData = [
     {
       id: 1,
-      title: "AIR FORCE 1",
-      image: AirForce,
-      price: "$29.99"
+      title: "Basketball",
+      image: basketBall,
     },
     {
       id: 2,
-      title: "AIR JORDAN 1",
-      image: AirJordan,
-      price: "$34.99"
+      title: "Dance",
+      image: dance,
     },
     {
       id: 3,
-      title: "BLAZER",
-      image: Blazer,
-      price: "$24.99"
+      title: "Football",
+      image: football,
     },
     {
       id: 4,
-      title: "CORTEZ",
-      image: Cortez,
-      price: "$19.99"
+      title: "Running",
+      image: running,
+
     },
     {
       id: 5,
-      title: "DUNKS",
-      image: Dunks,
-      price: "$39.99"
+      title: "Skateboarding",
+      image: skate,
+
     },
     {
       id: 6,
-      title: "METCON",
-      image: Metcon,
-      price: "$27.99"
+      title: "Tennis",
+      image: tennis,
+
     },
     {
       id: 7,
-      title: "PEGASUS",
-      image: Pegasus,
-      price: "$49.99"
+      title: "Training and Gym",
+      image: gym,
+
     },
     {
       id: 8,
-      title: "V2K",
-      image: V2k,
-      price: "$22.99"
+      title: "Yoga",
+      image: yoga,
+
     },
-    {
-      id: 9,
-      title: "VOMERO",
-      image: Vomero,
-      price: "$22.99"
-    },
-    {
-      id: 10,
-      title: "VOMERO 18",
-      image: Vomero18,
-      price: "$22.99"
-    }
+
   ];
 
   //handle cart 
-  function handleCart() {
-    cartNavigate('/cart')
+  function handleSports() {
+    cartNavigate('/sports')
   }
 
   // Determine cards to show based on screen width
@@ -122,8 +107,10 @@ function HeroSecThree() {
     }
   };
 
+
+
   return (
-    <div className="md:px-10 sm:px-4 px-2 py-8">
+    <div className="md:px-10 sm:px-4 px-2 py-8 mb-5">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-semibold">Shop by Icons</h1>
         <div className="flex gap-4 items-center">
@@ -161,26 +148,24 @@ function HeroSecThree() {
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="w-full sm:h-[450px] md:h-[300px] h-[300px] object-cover"
+                    className="w-full h-[300px] object-cover"
                   />
+                  <button
+                    onClick={handleSports}
+                    className="absolute bottom-4 left-4 cursor-pointer bg-white text-black font-semibold px-3 py-1 rounded-4xl hover:bg-gray-300"
+                  >
+                    {card.title}
+                  </button>
                 </div>
-                <div className="p-4">
 
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-2xl  font-extrabold mb-2">{card.title}</h3>
-                    {/* <span className="text-gray-900 font-bold">{card.price}</span> */}
-                    <button onClick={handleCart} className="cursor-pointer bg-black text-white font-semibold px-3 py-1 rounded-4xl hover:bg-gray-500">
-                      <MdOutlineAddShoppingCart />
-                    </button>
-                  </div>
-                </div>
+
               </div>
             </div>
           ))}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default HeroSecThree;
+export default HeroShopBySports

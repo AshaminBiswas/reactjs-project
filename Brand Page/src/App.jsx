@@ -1,8 +1,12 @@
-import { createBrowserRouter, RouterProvider, Outlet, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import './App.css';
+
 import DontMissPopularProduct from './components/DontMissPopularProduct';
 import HeroSecFour from './components/HeroSecFour';
+import TrendingProductPage from './components/TrendingProductPage';
+import Trending from './components/Trending';
+import HeroShopBySports from './components/HeroShopBySports';
 
 // Component imports with lazy loading for improved performance
 const Navbar = lazy(() => import('./components/Navbar'));
@@ -70,6 +74,8 @@ function Hero() {
       <HeroSecTow />
       <HeroSecThree />
       <HeroSecFour />
+      <Trending />
+      <HeroShopBySports />
     </>
   );
 }
@@ -163,6 +169,10 @@ const router = createBrowserRouter([
       {
         path: 'dont-miss-popular-product',
         element: <DontMissPopularProduct />
+      },
+      {
+        path: "trending-products",
+        element: <TrendingProductPage />
       }
     ],
   },

@@ -1,92 +1,110 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MdArrowBackIosNew, MdArrowForwardIos, MdOutlineAddShoppingCart } from 'react-icons/md';
 
 
-//import image for shop by icons
-import AirForce from '../assets/Shop by icons/Air force 1.jpg'
-import AirJordan from '../assets/Shop by icons/Air Jordan 1.jpg'
-import Blazer from '../assets/Shop by icons/BLAZER.jpg'
-import Cortez from '../assets/Shop by icons/CORTEZ.jpg'
-import Dunks from '../assets/Shop by icons/DUNK.jpg'
-import Metcon from '../assets/Shop by icons/METCON.jpg'
-import Pegasus from '../assets/Shop by icons/pegasus 41.jpg'
-import V2k from '../assets/Shop by icons/v2k.jpg'
-import Vomero from '../assets/Shop by icons/VOMERO.jpg'
-import Vomero18 from '../assets/Shop by icons/VOMERO18.jpg'
-function HeroSecThree() {
+import trending1 from '../assets/trending/trending 1.jpg'
+import trending2 from '../assets/trending/trending 2.jpg'
+import trending3 from '../assets/trending/trending 3.jpg'
+import trending4 from '../assets/trending/trending 4.jpg'
+import trending5 from '../assets/trending/trending 5.jpg'
+import trending6 from '../assets/trending/trending 6.jpg'
+import trending7 from '../assets/trending/trending 7.jpg'
+import trending8 from '../assets/trending/trending 8.jpg'
+import trending9 from '../assets/trending/trending 9.jpg'
+import trending10 from '../assets/trending/trending 10.jpg'
+
+
+
+function Trending() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(4);
   const sliderRef = useRef(null);
-  const cartNavigate = useNavigate()
-  // Dummy card data
+  const trendingNavigate = useNavigate()
+
+  //handleTrending
+
+  function handleTrending() {
+    trendingNavigate("/trending-products")
+  }
+
+  function handleCart() {
+    trendingNavigate("/cart")
+  }
+
+
   const cardData = [
     {
       id: 1,
-      title: "AIR FORCE 1",
-      image: AirForce,
-      price: "$29.99"
+      title: "Nike ReractX Rejuven8",
+      subTitle: "Men's Slides",
+      image: trending1,
+      price: "₹4695.00"
     },
     {
       id: 2,
-      title: "AIR JORDAN 1",
-      image: AirJordan,
-      price: "$34.99"
+      title: "Air Jordan",
+      subTitle: "Men's Knit Jersey Top",
+      image: trending2,
+      price: "₹4995.00"
     },
     {
       id: 3,
-      title: "BLAZER",
-      image: Blazer,
-      price: "$24.99"
+      title: "Jordan Flight Chicago",
+      subTitle: "Women's Parachute Pants",
+      image: trending3,
+      price: "₹5495.00"
     },
     {
       id: 4,
-      title: "CORTEZ",
-      image: Cortez,
-      price: "$19.99"
+      title: "Nike Air Force 1 '07 LV8",
+      subTitle: "Men's Shoes",
+      image: trending4,
+      price: "₹10795.00"
     },
     {
       id: 5,
-      title: "DUNKS",
-      image: Dunks,
-      price: "$39.99"
+      title: "Nike Rival Fly 4",
+      subTitle: "Men's Road Running Shoes",
+      image: trending5,
+      price: "₹8695.00"
     },
     {
       id: 6,
-      title: "METCON",
-      image: Metcon,
-      price: "$27.99"
+      title: "Nike Air Max Dn8",
+      subTitle: "Men's Shoes",
+      image: trending6,
+      price: "₹17495.00"
     },
     {
       id: 7,
-      title: "PEGASUS",
-      image: Pegasus,
-      price: "$49.99"
+      title: "Nike Air Max Koko",
+      subTitle: "Women's Sandals (22 - 29cm)",
+      image: trending7,
+      price: "₹7995.00"
     },
     {
       id: 8,
-      title: "V2K",
-      image: V2k,
-      price: "$22.99"
+      title: "Nike Air Max Dn8",
+      subTitle: "Men's Shoes",
+      image: trending8,
+      price: "₹17495.00"
     },
     {
       id: 9,
-      title: "VOMERO",
-      image: Vomero,
-      price: "$22.99"
+      title: "Nike ACG",
+      subTitle: "Men's Hiking Shorts",
+      image: trending9,
+      price: "₹5195.00"
     },
     {
       id: 10,
-      title: "VOMERO 18",
-      image: Vomero18,
-      price: "$22.99"
+      title: "Nike Life",
+      subTitle: "Men's Linen Short-Sleeve Button Down",
+      image: trending10,
+      price: "₹4999.00"
     }
   ];
-
-  //handle cart 
-  function handleCart() {
-    cartNavigate('/cart')
-  }
 
   // Determine cards to show based on screen width
   useEffect(() => {
@@ -121,11 +139,10 @@ function HeroSecThree() {
       setCurrentIndex(prevIndex => prevIndex - 1);
     }
   };
-
   return (
     <div className="md:px-10 sm:px-4 px-2 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-semibold">Shop by Icons</h1>
+        <h1 className="text-2xl font-semibold">Trending Now</h1>
         <div className="flex gap-4 items-center">
           <div
             className={`w-10 h-10 rounded-full flex items-center justify-center ${currentIndex === 0 ? 'bg-gray-200 text-gray-400' : 'bg-gray-300 hover:bg-gray-400 cursor-pointer'
@@ -158,17 +175,17 @@ function HeroSecThree() {
             >
               <div className="bg-white rounded-lg shadow-md overflow-hidden h-full transition-transform duration-300 hover:shadow-lg">
                 <div className="relative pb-2/3">
-                  <img
+                  <img onClick={handleTrending}
                     src={card.image}
                     alt={card.title}
                     className="w-full sm:h-[450px] md:h-[300px] h-[300px] object-cover"
                   />
                 </div>
                 <div className="p-4">
-
+                  <h3 className="text-lg font-medium mb-2">{card.title}</h3>
+                  <h3 className='text-lg font-medium mb-2 text-gray-400'>{card.subTitle}</h3>
                   <div className="flex justify-between items-center">
-                    <h3 className="text-2xl  font-extrabold mb-2">{card.title}</h3>
-                    {/* <span className="text-gray-900 font-bold">{card.price}</span> */}
+                    <span className="text-gray-900 font-bold">MRP : {card.price}</span>
                     <button onClick={handleCart} className="cursor-pointer bg-black text-white font-semibold px-3 py-1 rounded-4xl hover:bg-gray-500">
                       <MdOutlineAddShoppingCart />
                     </button>
@@ -180,7 +197,7 @@ function HeroSecThree() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default HeroSecThree;
+export default Trending
