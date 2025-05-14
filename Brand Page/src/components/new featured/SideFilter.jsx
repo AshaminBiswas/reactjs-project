@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NewFeatured() {
+function SideFilter() {
   return (
     <div>
 
@@ -8,4 +8,4 @@ function NewFeatured() {
   )
 }
 
-export default NewFeatured
+export default SideFilter

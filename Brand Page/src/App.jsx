@@ -11,7 +11,7 @@ import HeroShopBySports from './components/HeroShopBySports';
 // Component imports with lazy loading for improved performance
 const Navbar = lazy(() => import('./components/Navbar'));
 const Footer = lazy(() => import('./components/Footer'))
-const NewFeatured = lazy(() => import('./components/NewFeatured'));
+const NewFeatured = lazy(() => import('./components/new featured/NewFeatured'));
 const Category = lazy(() => import('./components/Category'));
 const Men = lazy(() => import('./components/Men'));
 const Women = lazy(() => import('./components/Women'));

@@ -161,7 +161,7 @@ function HeroSecThree() {
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="w-full sm:h-[450px] md:h-[300px] h-[300px] object-cover"
+                    className="w-full h-[400px] md:h-[300px] h-[300px] object-cover"
                   />
                 </div>
                 <div className="p-4">
