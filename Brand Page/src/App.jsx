@@ -12,13 +12,13 @@ import HeroShopBySports from './components/HeroShopBySports';
 const Navbar = lazy(() => import('./components/Navbar'));
 const Footer = lazy(() => import('./components/Footer'))
 const NewFeatured = lazy(() => import('./components/new featured/NewFeatured'));
-const Category = lazy(() => import('./components/Category'));
-const Men = lazy(() => import('./components/Men'));
-const Women = lazy(() => import('./components/Women'));
-const Kids = lazy(() => import('./components/Kids'));
-const MenNav = lazy(() => import('./components/MenNav'));
-const WomenNav = lazy(() => import('./components/WomenNav'));
-const KidsNav = lazy(() => import('./components/KidsNav'));
+const Category = lazy(() => import('./components/category/Category'));
+const Men = lazy(() => import('./components/category/Men'));
+const Women = lazy(() => import('./components/category/Women'));
+const Kids = lazy(() => import('./components/category/Kids'));
+const MenNav = lazy(() => import('./components/category/MenNav'));
+const WomenNav = lazy(() => import('./components/category/WomenNav'));
+const KidsNav = lazy(() => import('./components/category/KidsNav'));
 const Collection = lazy(() => import('./components/Collection'));
 const Sports = lazy(() => import('./components/Sports'));
 const NotFound = lazy(() => import('./components/NotFound'));
@@ -52,21 +52,8 @@ const MainLayout = () => (
   </>
 );
 
-const CategoryLayout = () => (
-  <div className="flex flex-col md:flex-row">
-    <Category />
-    <div className="w-full">
-      <Suspense fallback={<LoadingSpinner />}>
-        <Outlet />
-      </Suspense>
-    </div>
-  </div>
-);
-
 // Hero component properly defined as a function component to use hooks
 function Hero() {
-
-
   return (
     <>
       <HeroOne />
@@ -95,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'category',
-        element: <CategoryLayout />,
+        element: <Category />,
         children: [
           {
             path: 'men',
@@ -185,5 +172,4 @@ const router = createBrowserRouter([
 function App() {
   return <RouterProvider router={router} />;
 }
-
-export default App;
+export default App
