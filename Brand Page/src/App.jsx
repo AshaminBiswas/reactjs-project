@@ -1,5 +1,5 @@
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
 import './App.css';
 
 import DontMissPopularProduct from './components/DontMissPopularProduct';
@@ -7,6 +7,13 @@ import HeroSecFour from './components/HeroSecFour';
 import TrendingProductPage from './components/TrendingProductPage';
 import Trending from './components/Trending';
 import HeroShopBySports from './components/HeroShopBySports';
+import MenSingleProduct from './components/category/MenSingleProduct'
+import WomenSingleProduct from './components/category/WomenSingleProduct'
+import KidsSingleProduct from './components/category/KidsSingleProduct'
+import MenHero from './components/category/MenHero';
+import WomenHero from './components/category/WomenHero';
+import KidsHero from './components/category/KidsHero';
+
 
 // Component imports with lazy loading for improved performance
 const Navbar = lazy(() => import('./components/Navbar'));
@@ -41,15 +48,23 @@ const LoadingSpinner = () => (
 );
 
 const MainLayout = () => (
-  <>
-    <Navbar />
-    <main className="min-h-screen">
+  <div className="flex flex-col min-h-screen relative">
+    <header className="sticky top-0 z-40 w-full">
+      <Suspense fallback={<LoadingSpinner />}>
+        <Navbar />
+      </Suspense>
+    </header>
+    <main className="flex-grow">
       <Suspense fallback={<LoadingSpinner />}>
         <Outlet />
       </Suspense>
     </main>
-    <Footer />
-  </>
+    <footer>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Footer />
+      </Suspense>
+    </footer>
+  </div>
 );
 
 // Hero component properly defined as a function component to use hooks
@@ -66,6 +81,8 @@ function Hero() {
     </>
   );
 }
+
+// ... other imports remain the same
 
 const router = createBrowserRouter([
   {
@@ -85,43 +102,39 @@ const router = createBrowserRouter([
         element: <Category />,
         children: [
           {
-            path: 'men',
+            path: '',
             element: (
-              <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/4">
-                  <MenNav />
-                </div>
-                <div className="w-full md:w-3/4">
-                  <Men />
-                </div>
+              <div>
+                {/* This route show the three hero components */}
+                <MenHero />
+                <WomenHero />
+                <KidsHero />
               </div>
             ),
+          },
+          {
+            path: 'men',
+            element: <Men />,
           },
           {
             path: 'women',
-            element: (
-              <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/4">
-                  <WomenNav />
-                </div>
-                <div className="w-full md:w-3/4">
-                  <Women />
-                </div>
-              </div>
-            ),
+            element: <Women />,
           },
           {
             path: 'kids',
-            element: (
-              <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/4">
-                  <KidsNav />
-                </div>
-                <div className="w-full md:w-3/4">
-                  <Kids />
-                </div>
-              </div>
-            ),
+            element: <Kids />,
+          },
+          {
+            path: 'men/men-single-product',
+            element: <MenSingleProduct />,
+          },
+          {
+            path: 'women/women-single-product',
+            element: <WomenSingleProduct />,
+          },
+          {
+            path: 'kids/kids-single-product',
+            element: <KidsSingleProduct />,
           },
         ],
       },
@@ -160,7 +173,8 @@ const router = createBrowserRouter([
       {
         path: "trending-products",
         element: <TrendingProductPage />
-      }
+      },
+
     ],
   },
   {
@@ -172,4 +186,5 @@ const router = createBrowserRouter([
 function App() {
   return <RouterProvider router={router} />;
 }
-export default App
+
+export default App;
