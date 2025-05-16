@@ -3,6 +3,7 @@ import modelImage from '../../assets/category/hero-kids-one.jpeg'
 import productImage from '../../assets/category/hero-kids-two.jpeg'
 
 function KidsHero() {
+  const navigate = useNavigate()
   function kidsProducts() {
     navigate('/category/kids/kids-single-product')
   }
