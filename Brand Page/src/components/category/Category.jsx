@@ -1,8 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import CategoryNav from './CategoryNav';
-import MenHero from './MenHero';
-import WomenHero from './WomenHero';
-import KidsHero from './KidsHero';
 
 function Category() {
   const location = useLocation();

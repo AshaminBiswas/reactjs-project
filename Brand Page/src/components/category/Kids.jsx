@@ -1,9 +1,17 @@
-import React from 'react'
+import HeroSecOne from "../HeroSecOne"
+import KidsHero from './KidsHero'
+import KidsTrending from "./KidsTrending"
+import HeroSecThree from '../HeroSecThree'
+import HeroShopBySports from "../HeroShopBySports"
 
 function Kids() {
   return (
     <div>
-      <h1>kids page</h1>
+      <KidsHero />
+      <HeroSecOne />
+      <KidsTrending />
+      <HeroSecThree />
+      <HeroShopBySports />
     </div>
   )
 }
