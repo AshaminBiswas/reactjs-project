@@ -23,7 +23,7 @@ const Category = lazy(() => import('./components/category/Category'));
 const Men = lazy(() => import('./components/category/Men'));
 const Women = lazy(() => import('./components/category/Women'));
 const Kids = lazy(() => import('./components/category/Kids'));
-const Collection = lazy(() => import('./components/Collection'));
+const CollectionPage = lazy(() => import('./components/collection/CollectionPage'));
 const Sports = lazy(() => import('./components/Sports'));
 const NotFound = lazy(() => import('./components/NotFound'));
 const Login = lazy(() => import('./components/Login'));
@@ -137,7 +137,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'collection',
-        element: <Collection />,
+        element: <CollectionPage />,
       },
       {
         path: 'sports',
