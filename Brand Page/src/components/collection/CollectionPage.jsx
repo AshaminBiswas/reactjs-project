@@ -13,12 +13,14 @@ const CollectionPage = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // Move filters state definition before localFilters
   const [filters, setFilters] = useState({
-    price: { min: 0, max: 300 },
+    price: { min: 1000, max: 99999 },
     sizes: [],
     colors: [],
     brands: []
   });
+  const [localFilters, setLocalFilters] = useState(filters); // Now this will work
   const [sortOption, setSortOption] = useState('featured');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
@@ -29,28 +31,645 @@ const CollectionPage = () => {
       {
         id: 1,
         name: 'Nike Air Max 270',
-        price: 150,
-        discountPrice: 120,
+        price: 15495,
+        discountPrice: 10550,
         image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/awjogtdnqxniqecxopax/air-max-270-mens-shoes-KkLcGR.png',
         colors: ['black', 'white', 'red'],
         sizes: [8, 9, 10, 11, 12],
         brand: 'Nike',
         rating: 4.5,
         isNew: true,
-        category: 'running'
+        category: 'running',
+        gender: 'men'
       },
       {
         id: 2,
         name: 'Nike Air Force 1',
-        price: 110,
+        price: 11495,
         image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/skwgyqrbfzhu6uyeh0gg/air-force-1-07-mens-shoe-jBrhbr.png',
         colors: ['white'],
         sizes: [7, 8, 9, 10, 11, 12],
         brand: 'Nike',
         rating: 4.8,
-        category: 'casual'
+        category: 'casual',
+        gender: 'men'
       },
-      // Add more sample products...
+      {
+        id: 3,
+        name: 'Nike Air Jordan 1 Retro High',
+        price: 17995,
+        discountPrice: 15995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-jordan-1-retro-high-og-shoe-1Q1Q1Q.png',
+        colors: ['black', 'red'],
+        sizes: [7, 8, 9, 10, 11, 12, 13],
+        brand: 'Jordan',
+        rating: 4.9,
+        category: 'basketball',
+        gender: 'men'
+      },
+      {
+        id: 4,
+        name: 'Nike React Infinity Run Flyknit',
+        price: 15995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/react-infinity-run-flyknit-running-shoe-1Q1Q1Q.png',
+        colors: ['blue', 'black'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 5,
+        name: 'Nike Blazer Mid 77 Vintage',
+        price: 9995,
+        discountPrice: 8495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/blazer-mid-77-vintage-shoe-1Q1Q1Q.png',
+        colors: ['white', 'black'],
+        sizes: [7, 8, 9, 10, 11],
+        brand: 'Nike',
+        rating: 4.3,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      {
+        id: 6,
+        name: 'Nike Air Max 90',
+        price: 12995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-90-shoe-1Q1Q1Q.png',
+        colors: ['white', 'red', 'black'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.7,
+        isNew: true,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      {
+        id: 7,
+        name: 'Nike Dunk Low Retro',
+        price: 10995,
+        discountPrice: 8995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/dunk-low-retro-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.5,
+        category: 'skateboarding',
+        gender: 'unisex'
+      },
+      {
+        id: 8,
+        name: 'Nike Air Zoom Pegasus 38',
+        price: 11995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-pegasus-38-running-shoe-1Q1Q1Q.png',
+        colors: ['blue', 'black', 'green'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        isNew: true,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 9,
+        name: 'Nike Metcon 7',
+        price: 13995,
+        discountPrice: 11995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/metcon-7-training-shoe-1Q1Q1Q.png',
+        colors: ['black', 'red'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.4,
+        category: 'training',
+        gender: 'men'
+      },
+      {
+        id: 10,
+        name: 'Nike Air VaporMax 2021',
+        price: 18995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-vapormax-2021-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white', 'blue'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.7,
+        isNew: true,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 11,
+        name: 'Nike Revolution 6',
+        price: 3495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/revolution-6-running-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [6, 7, 8, 9, 10],
+        brand: 'Nike',
+        rating: 4.2,
+        category: 'running',
+        gender: 'kids'
+      },
+      {
+        id: 12,
+        name: 'Nike Air Max 2090',
+        price: 14995,
+        discountPrice: 12995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-2090-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white', 'blue'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        category: 'casual',
+        gender: 'men'
+      },
+      {
+        id: 13,
+        name: 'Nike Flex Runner 2',
+        price: 2995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/flex-runner-2-running-shoe-1Q1Q1Q.png',
+        colors: ['pink', 'blue', 'black'],
+        sizes: [3, 4, 5, 6, 7],
+        brand: 'Nike',
+        rating: 4.0,
+        category: 'running',
+        gender: 'kids'
+      },
+      {
+        id: 14,
+        name: 'Nike Air Zoom Tempo Next%',
+        price: 19995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-tempo-next-running-shoe-1Q1Q1Q.png',
+        colors: ['red', 'black'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.8,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 15,
+        name: 'Nike SB Zoom Blazer Mid',
+        price: 8995,
+        discountPrice: 7495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/sb-zoom-blazer-mid-skate-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike SB',
+        rating: 4.3,
+        category: 'skateboarding',
+        gender: 'men'
+      },
+      {
+        id: 16,
+        name: 'Nike Air Monarch IV',
+        price: 5995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-monarch-iv-training-shoe-1Q1Q1Q.png',
+        colors: ['white', 'black'],
+        sizes: [8, 9, 10, 11, 12, 13],
+        brand: 'Nike',
+        rating: 4.1,
+        category: 'training',
+        gender: 'men'
+      },
+      {
+        id: 17,
+        name: 'Nike Joyride Run Flyknit',
+        price: 15995,
+        discountPrice: 11995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/joyride-run-flyknit-running-shoe-1Q1Q1Q.png',
+        colors: ['pink', 'blue'],
+        sizes: [5, 6, 7, 8, 9],
+        brand: 'Nike',
+        rating: 4.4,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 18,
+        name: 'Nike Air Max 97',
+        price: 16995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-97-shoe-1Q1Q1Q.png',
+        colors: ['silver', 'black', 'white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.7,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      {
+        id: 19,
+        name: 'Nike ZoomX Vaporfly Next% 2',
+        price: 24995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/zoomx-vaporfly-next-2-running-shoe-1Q1Q1Q.png',
+        colors: ['pink', 'black'],
+        sizes: [8, 9, 10, 11],
+        brand: 'Nike',
+        rating: 4.9,
+        isNew: true,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 20,
+        name: 'Nike Court Vision Low',
+        price: 4995,
+        discountPrice: 3995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/court-vision-low-shoe-1Q1Q1Q.png',
+        colors: ['white', 'black'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.0,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      // Continuing with 30 more products...
+      {
+        id: 21,
+        name: 'Nike Air Zoom SuperRep',
+        price: 10995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-superrep-training-shoe-1Q1Q1Q.png',
+        colors: ['black', 'pink'],
+        sizes: [6, 7, 8, 9, 10],
+        brand: 'Nike',
+        rating: 4.3,
+        category: 'training',
+        gender: 'women'
+      },
+      {
+        id: 22,
+        name: 'Nike Air Max 2090',
+        price: 14995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-2090-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [5, 6, 7, 8, 9],
+        brand: 'Nike',
+        rating: 4.5,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 23,
+        name: 'Nike Air Max 270 React',
+        price: 16995,
+        discountPrice: 13995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-270-react-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white', 'red'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        isNew: true,
+        category: 'casual',
+        gender: 'men'
+      },
+      {
+        id: 24,
+        name: 'Nike Free RN 5.0',
+        price: 8995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/free-rn-5-running-shoe-1Q1Q1Q.png',
+        colors: ['black', 'blue'],
+        sizes: [7, 8, 9, 10, 11],
+        brand: 'Nike',
+        rating: 4.2,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 25,
+        name: 'Nike Air Zoom Pegasus 38 Shield',
+        price: 13995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-pegasus-38-shield-running-shoe-1Q1Q1Q.png',
+        colors: ['black', 'blue'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.5,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 1,
+        name: 'Nike Air Max 270',
+        price: 15495,
+        discountPrice: 10550,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/awjogtdnqxniqecxopax/air-max-270-mens-shoes-KkLcGR.png',
+        colors: ['black', 'white', 'red'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.5,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 2,
+        name: 'Nike Air Force 1',
+        price: 11495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/skwgyqrbfzhu6uyeh0gg/air-force-1-07-mens-shoe-jBrhbr.png',
+        colors: ['white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.8,
+        category: 'casual',
+        gender: 'men'
+      },
+      {
+        id: 3,
+        name: 'Nike Air Jordan 1 Retro High',
+        price: 17995,
+        discountPrice: 15995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-jordan-1-retro-high-og-shoe-1Q1Q1Q.png',
+        colors: ['black', 'red'],
+        sizes: [7, 8, 9, 10, 11, 12, 13],
+        brand: 'Jordan',
+        rating: 4.9,
+        category: 'basketball',
+        gender: 'men'
+      },
+      {
+        id: 4,
+        name: 'Nike React Infinity Run Flyknit',
+        price: 15995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/react-infinity-run-flyknit-running-shoe-1Q1Q1Q.png',
+        colors: ['blue', 'black'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 5,
+        name: 'Nike Blazer Mid 77 Vintage',
+        price: 9995,
+        discountPrice: 8495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/blazer-mid-77-vintage-shoe-1Q1Q1Q.png',
+        colors: ['white', 'black'],
+        sizes: [7, 8, 9, 10, 11],
+        brand: 'Nike',
+        rating: 4.3,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      {
+        id: 6,
+        name: 'Nike Air Max 90',
+        price: 12995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-90-shoe-1Q1Q1Q.png',
+        colors: ['white', 'red', 'black'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.7,
+        isNew: true,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      {
+        id: 7,
+        name: 'Nike Dunk Low Retro',
+        price: 10995,
+        discountPrice: 8995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/dunk-low-retro-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.5,
+        category: 'skateboarding',
+        gender: 'unisex'
+      },
+      {
+        id: 8,
+        name: 'Nike Air Zoom Pegasus 38',
+        price: 11995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-pegasus-38-running-shoe-1Q1Q1Q.png',
+        colors: ['blue', 'black', 'green'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        isNew: true,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 9,
+        name: 'Nike Metcon 7',
+        price: 13995,
+        discountPrice: 11995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/metcon-7-training-shoe-1Q1Q1Q.png',
+        colors: ['black', 'red'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.4,
+        category: 'training',
+        gender: 'men'
+      },
+      {
+        id: 10,
+        name: 'Nike Air VaporMax 2021',
+        price: 18995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-vapormax-2021-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white', 'blue'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.7,
+        isNew: true,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 11,
+        name: 'Nike Revolution 6',
+        price: 3495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/revolution-6-running-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [6, 7, 8, 9, 10],
+        brand: 'Nike',
+        rating: 4.2,
+        category: 'running',
+        gender: 'kids'
+      },
+      {
+        id: 12,
+        name: 'Nike Air Max 2090',
+        price: 14995,
+        discountPrice: 12995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-2090-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white', 'blue'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        category: 'casual',
+        gender: 'men'
+      },
+      {
+        id: 13,
+        name: 'Nike Flex Runner 2',
+        price: 2995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/flex-runner-2-running-shoe-1Q1Q1Q.png',
+        colors: ['pink', 'blue', 'black'],
+        sizes: [3, 4, 5, 6, 7],
+        brand: 'Nike',
+        rating: 4.0,
+        category: 'running',
+        gender: 'kids'
+      },
+      {
+        id: 14,
+        name: 'Nike Air Zoom Tempo Next%',
+        price: 19995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-tempo-next-running-shoe-1Q1Q1Q.png',
+        colors: ['red', 'black'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.8,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 15,
+        name: 'Nike SB Zoom Blazer Mid',
+        price: 8995,
+        discountPrice: 7495,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/sb-zoom-blazer-mid-skate-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike SB',
+        rating: 4.3,
+        category: 'skateboarding',
+        gender: 'men'
+      },
+      {
+        id: 16,
+        name: 'Nike Air Monarch IV',
+        price: 5995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-monarch-iv-training-shoe-1Q1Q1Q.png',
+        colors: ['white', 'black'],
+        sizes: [8, 9, 10, 11, 12, 13],
+        brand: 'Nike',
+        rating: 4.1,
+        category: 'training',
+        gender: 'men'
+      },
+      {
+        id: 17,
+        name: 'Nike Joyride Run Flyknit',
+        price: 15995,
+        discountPrice: 11995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/joyride-run-flyknit-running-shoe-1Q1Q1Q.png',
+        colors: ['pink', 'blue'],
+        sizes: [5, 6, 7, 8, 9],
+        brand: 'Nike',
+        rating: 4.4,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 18,
+        name: 'Nike Air Max 97',
+        price: 16995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-97-shoe-1Q1Q1Q.png',
+        colors: ['silver', 'black', 'white'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.7,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      {
+        id: 19,
+        name: 'Nike ZoomX Vaporfly Next% 2',
+        price: 24995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/zoomx-vaporfly-next-2-running-shoe-1Q1Q1Q.png',
+        colors: ['pink', 'black'],
+        sizes: [8, 9, 10, 11],
+        brand: 'Nike',
+        rating: 4.9,
+        isNew: true,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 20,
+        name: 'Nike Court Vision Low',
+        price: 4995,
+        discountPrice: 3995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/court-vision-low-shoe-1Q1Q1Q.png',
+        colors: ['white', 'black'],
+        sizes: [7, 8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.0,
+        category: 'casual',
+        gender: 'unisex'
+      },
+      // Continuing with 30 more products...
+      {
+        id: 21,
+        name: 'Nike Air Zoom SuperRep',
+        price: 10995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-superrep-training-shoe-1Q1Q1Q.png',
+        colors: ['black', 'pink'],
+        sizes: [6, 7, 8, 9, 10],
+        brand: 'Nike',
+        rating: 4.3,
+        category: 'training',
+        gender: 'women'
+      },
+      {
+        id: 22,
+        name: 'Nike Air Max 2090',
+        price: 14995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-2090-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white'],
+        sizes: [5, 6, 7, 8, 9],
+        brand: 'Nike',
+        rating: 4.5,
+        category: 'running',
+        gender: 'women'
+      },
+      {
+        id: 23,
+        name: 'Nike Air Max 270 React',
+        price: 16995,
+        discountPrice: 13995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-max-270-react-shoe-1Q1Q1Q.png',
+        colors: ['black', 'white', 'red'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.6,
+        isNew: true,
+        category: 'casual',
+        gender: 'men'
+      },
+      {
+        id: 24,
+        name: 'Nike Free RN 5.0',
+        price: 8995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/free-rn-5-running-shoe-1Q1Q1Q.png',
+        colors: ['black', 'blue'],
+        sizes: [7, 8, 9, 10, 11],
+        brand: 'Nike',
+        rating: 4.2,
+        category: 'running',
+        gender: 'men'
+      },
+      {
+        id: 25,
+        name: 'Nike Air Zoom Pegasus 38 Shield',
+        price: 13995,
+        image: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/7c15a1a1-5a3e-4a5e-8b9c-5d5d9d9d9d9d/air-zoom-pegasus-38-shield-running-shoe-1Q1Q1Q.png',
+        colors: ['black', 'blue'],
+        sizes: [8, 9, 10, 11, 12],
+        brand: 'Nike',
+        rating: 4.5,
+        isNew: true,
+        category: 'running',
+        gender: 'men'
+      },
+
+
     ];
     setProducts(sampleProducts);
     setFilteredProducts(sampleProducts);
@@ -221,25 +840,37 @@ const CollectionPage = () => {
           <div className="fixed inset-y-0 left-0 w-72 bg-white z-50 overflow-y-auto p-4 transform transition-transform md:hidden">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Filters</h2>
-              <button onClick={() => setIsFilterOpen(false)}>
+              <button
+                onClick={() => setIsFilterOpen(false)}
+                className="text-gray-600 hover:text-gray-900"
+              >
                 <MdClose size={24} />
               </button>
             </div>
+
             <FilterSidebar
-              filters={filters}
-              onChange={handleFilterChange}
+              filters={localFilters}
+              onChange={setLocalFilters}
               availableFilters={{
                 sizes: [7, 8, 9, 10, 11, 12, 13],
                 colors: ['black', 'white', 'red', 'blue', 'green'],
                 brands: ['Nike', 'Jordan', 'Nike SB']
               }}
+              showApplyButton={false} // Add this prop
             />
-            <button
-              className="w-full py-3 bg-black text-white rounded-lg mt-4"
-              onClick={() => setIsFilterOpen(false)}
-            >
-              Apply Filters
-            </button>
+
+            {/* Single Apply button at bottom */}
+            <div className="sticky bottom-0 bg-white pt-4 pb-6 border-t">
+              <button
+                className="w-full py-3 bg-black text-white rounded-lg"
+                onClick={() => {
+                  handleFilterChange(localFilters);
+                  setIsFilterOpen(false);
+                }}
+              >
+                Apply Filters
+              </button>
+            </div>
           </div>
         </>
       )}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const FilterSidebar = ({ filters, onChange, availableFilters }) => {
+const FilterSidebar = ({ filters, onChange, availableFilters, showApplyButton = true }) => {
   const [localFilters, setLocalFilters] = useState(filters);
 
   const handlePriceChange = (e) => {
@@ -43,15 +43,15 @@ const FilterSidebar = ({ filters, onChange, availableFilters }) => {
         <h3 className="font-medium text-gray-900 mb-4">Price Range</h3>
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <span>${localFilters.price.min}</span>
-            <span>${localFilters.price.max}</span>
+            <span>₹{localFilters.price.min}</span>
+            <span>₹{localFilters.price.max}</span>
           </div>
           <div className="flex space-x-4">
             <input
               type="range"
               name="min"
               min="0"
-              max="300"
+              max="5000"
               value={localFilters.price.min}
               onChange={handlePriceChange}
               className="w-full"
@@ -59,8 +59,8 @@ const FilterSidebar = ({ filters, onChange, availableFilters }) => {
             <input
               type="range"
               name="max"
-              min="0"
-              max="300"
+              min="1000"
+              max="99999"
               value={localFilters.price.max}
               onChange={handlePriceChange}
               className="w-full"
@@ -123,12 +123,14 @@ const FilterSidebar = ({ filters, onChange, availableFilters }) => {
         </div>
       </div>
 
-      <button
-        onClick={applyFilters}
-        className="w-full py-2 bg-black text-white rounded-md"
-      >
-        Apply Filters
-      </button>
+      {showApplyButton && (
+        <button
+          onClick={applyFilters}
+          className="w-full py-2 bg-black text-white rounded-md"
+        >
+          Apply Filters
+        </button>
+      )}
     </div>
   );
 };
