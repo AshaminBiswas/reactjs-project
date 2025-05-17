@@ -13,7 +13,7 @@ import KidsSingleProduct from './components/category/KidsSingleProduct'
 import MenHero from './components/category/MenHero';
 import WomenHero from './components/category/WomenHero';
 import KidsHero from './components/category/KidsHero';
-
+import Favorite from './components/Favorite'
 
 // Component imports with lazy loading for improved performance
 const Navbar = lazy(() => import('./components/Navbar'));
@@ -162,6 +162,10 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <Cart />
+      },
+      {
+        path: 'favorite',
+        element: <Favorite />
       },
       {
         path: 'dont-miss-popular-product',
