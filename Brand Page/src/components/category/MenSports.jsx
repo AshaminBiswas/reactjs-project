@@ -102,7 +102,7 @@ function MenSports() {
   return (
     <div className="md:px-10 sm:px-4 px-2 py-8 mb-5">
       <div className="flex justify-between items-center px-10 mb-8">
-        <h1 className="text-2xl font-semibold">Men Sorts</h1>
+        <h1 className="text-2xl font-semibold">Men Sports</h1>
         <div className="flex gap-4 items-center">
           <div
             className={`w-10 h-10 rounded-full flex items-center justify-center ${currentIndex === 0 ? 'bg-gray-200 text-gray-400' : 'bg-gray-300 hover:bg-gray-400 cursor-pointer'

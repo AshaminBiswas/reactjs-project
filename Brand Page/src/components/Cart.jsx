@@ -61,7 +61,7 @@ const Cart = () => {
             <h2 className="text-2xl font-bold">Total Price: ₹{totalPrice}</h2>
             <button
               onClick={handleOrder}
-              className="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+              className="mt-4 bg-black text-white px-4 py-2 rounded-lg hover:bg-green-700"
             >
               Order Now
             </button>
