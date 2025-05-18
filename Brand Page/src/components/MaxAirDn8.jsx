@@ -1,9 +1,12 @@
 import React from 'react'
+import HeroSecThree from './HeroSecThree'
+import Trending from './Trending'
 
 function MaxAirDn8() {
   return (
     <div>
-      <h1>This Is Max Air Dn8 Products Page</h1>
+      <HeroSecThree />
+      <Trending />
     </div>
   )
 }

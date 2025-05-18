@@ -1,9 +1,12 @@
 import React from 'react'
+import Trending from './Trending'
+import HeroSecOne from './HeroSecOne'
 
 function TrendingProductPage() {
   return (
     <div>
-      <p>this is trending product page</p>
+      <HeroSecOne />
+      <Trending />
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import React from 'react'
+import HeroSecThree from './HeroSecThree'
 
 function DontMissPopularProduct() {
   return (
     <div>
-      <h1>This is popular product page</h1>
+      <HeroSecThree />
     </div>
   )
 }
