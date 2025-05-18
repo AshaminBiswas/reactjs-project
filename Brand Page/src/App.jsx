@@ -26,6 +26,7 @@ const Kids = lazy(() => import('./components/category/Kids'));
 const CollectionPage = lazy(() => import('./components/collection/CollectionPage'));
 const Sports = lazy(() => import('./components/Sports'));
 const NotFound = lazy(() => import('./components/NotFound'));
+const SignIn = lazy(() => import('./components/SignIn'));
 const Login = lazy(() => import('./components/Login'));
 const SaleOn = lazy(() => import('./components/SaleOn'));
 const Shop = lazy(() => import('./components/Shop'));
@@ -146,6 +147,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'signin',
+        element: <SignIn />
       },
       {
         path: 'shop',

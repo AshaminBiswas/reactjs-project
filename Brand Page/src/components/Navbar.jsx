@@ -11,6 +11,7 @@ function Navbar() {
   const [suggestions, setSuggestions] = useState([]);
   const searchRef = useRef(null);
   const navigator = useNavigate();
+  const [buttonText, setButtonText] = useState(false)
 
   // Sample search suggestions
   const sampleSuggestions = [
@@ -167,11 +168,15 @@ function Navbar() {
             </div>
 
             <div className="ml-4">
-              <NavLink to="/login">
+              {buttonText === false ? <NavLink to="/signin">
+                <button className="px-6 py-2 text-white rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300">
+                  Sign In
+                </button>
+              </NavLink> : <NavLink to="/login">
                 <button className="px-6 py-2 text-white rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300">
                   Login
                 </button>
-              </NavLink>
+              </NavLink>}
             </div>
           </div>
 
@@ -248,11 +253,15 @@ function Navbar() {
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 pt-2 pb-6 px-8 border-t">
-            <NavLink to="/login" onClick={toggleMenu}>
+            {buttonText === false ? <NavLink to="/signin" onClick={toggleMenu}>
+              <button className="w-full py-3 text-white rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300">
+                Sign In
+              </button>
+            </NavLink> : <NavLink to="/login" onClick={toggleMenu}>
               <button className="w-full py-3 text-white rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300">
                 Login
               </button>
-            </NavLink>
+            </NavLink>}
           </div>
         </div>
 
