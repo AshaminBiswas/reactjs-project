@@ -3,7 +3,7 @@ import { FiChevronRight } from 'react-icons/fi';
 
 const Breadcrumbs = ({ items }) => {
   return (
-    <nav className="flex mb-6" aria-label="Breadcrumb">
+    <nav className="flex mb-6 top-16 left-4 md:fixed z-20 bg-white w-full py-3" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-2">
         {items.map((item, index) => (
           <li key={item.name}>

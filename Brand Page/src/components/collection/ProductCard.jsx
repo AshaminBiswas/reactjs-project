@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
         </button>
       </div>
 
-      <Link to={`/product/${product.id}`} className="block">
+      <Link to={`#`} className="block">
         <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 relative">
           <img
             src={product.image}

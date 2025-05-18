@@ -96,8 +96,8 @@ function Navbar() {
             />
           </div>
 
-          {/* Search bar - always visible on desktop, toggleable on mobile */}
-          <div className={`${isSearchOpen ? 'fixed inset-0 bg-white py-4 px-4 z-40' : 'hidden'} md:flex md:flex-1 md:justify-center md:mx-4`}>
+          {/* Search bar - toggleable on mobile and medium screens */}
+          <div className={`${isSearchOpen ? 'fixed inset-0 bg-white py-4 px-4 z-40' : 'hidden'} lg:flex lg:flex-1 lg:justify-center lg:mx-4`}>
             <div
               ref={searchRef}
               className={`${isSearchOpen ? 'w-full max-w-md mx-auto' : 'w-full max-w-md'}`}
@@ -143,8 +143,8 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Desktop navigation links and icons */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
+          {/* Desktop navigation links and icons - only show on large screens */}
+          <div className="hidden lg:flex lg:items-center lg:space-x-6">
             <ul className="flex space-x-4 text-gray-600">
               {['new-featured', 'category', 'collection', 'sports'].map((path) => (
                 <li key={path} className="px-2">
@@ -180,8 +180,8 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Mobile menu buttons (search and hamburger) */}
-          <div className="flex items-center md:hidden space-x-4">
+          {/* Mobile menu buttons (search and hamburger) - show on medium and small screens */}
+          <div className="flex items-center lg:hidden space-x-4">
             {!isSearchOpen && (
               <button
                 onClick={toggleSearch}
@@ -213,7 +213,7 @@ function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu - show on medium and small screens */}
         <div
           className={`fixed top-0 right-0 h-full w-72 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}

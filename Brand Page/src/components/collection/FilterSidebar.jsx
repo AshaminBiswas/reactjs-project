@@ -37,7 +37,7 @@ const FilterSidebar = ({ filters, onChange, availableFilters, showApplyButton = 
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 top-30 left-4 md:sticky">
       {/* Price Range Filter */}
       <div>
         <h3 className="font-medium text-gray-900 mb-4">Price Range</h3>
