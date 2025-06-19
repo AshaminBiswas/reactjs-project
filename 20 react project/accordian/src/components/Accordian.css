@@ -1,0 +1,26 @@
+.data {
+  background-color: brown;
+  color: white;
+  padding: 0 20px;
+  transition: 0.3s ease-in-out;
+}
+.title {
+  border-bottom: 2px solid white;
+  padding: 5px;
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon {
+  font-weight: 600;
+  font-size: 32px;
+  cursor: pointer;
+}
+.answer {
+  font-size: 20px;
+  object-fit: cover;
+  padding: 5px 0;
+  text-align: start;
+}
