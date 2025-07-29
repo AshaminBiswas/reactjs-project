@@ -15,6 +15,7 @@
   gap: 10px;
   overflow-y: scroll;
   margin-right: 6%;
+  padding-left: 10px;
 }
 .card-list img {
   width: 240px;
