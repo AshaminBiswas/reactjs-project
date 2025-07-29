@@ -30,11 +30,12 @@ function Navbar() {
         <div className="nav-profile">
           <img src={profile_icon} alt="Profile Icon" className='profile' />
           <img src={caret_icon} alt="Dropdown Icon" />
+
+          <div className="dropdown">
+            <p>Sign Out</p>
+          </div>
         </div>
 
-        <div className="dropdown">
-          <p>Sign Out of Netflix</p>
-        </div>
 
 
       </div>
