@@ -16,6 +16,7 @@
   overflow-y: scroll;
   /* margin-right: 6%; */
   padding-left: 10px;
+  transition: all 0.3s ease-in-out;
 }
 .card-list img {
   width: 240px;
