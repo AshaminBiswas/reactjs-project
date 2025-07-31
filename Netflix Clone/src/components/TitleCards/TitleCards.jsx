@@ -1,31 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./TitleCard.css"
-
-import cardData from "../../assets/cards/Cards_data.js"
-function TitleCards({ title, category }) {
+import { Link } from 'react-router-dom'
+import { TitleCardContext } from '../../Context/TitleCardContext'
+function TitleCards({ title, category, }) {
   const [apiData, setApiData] = useState([])
+  // console.log(apiData)
   const cardRef = useRef()
-
 
   const handleWheel = (e) => {
     e.preventDefault()
     cardRef.current.scrollLeft += e.deltaY
   }
 
+  // const data = useContext(TitleCardContext)
+  // console.log(typeof data.videoData);
+
 
   useEffect(() => {
     cardRef.current.addEventListener("wheel", handleWheel)
   }, [])
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZTI0ODEyZWFiNWJjZWEwYjljYTMzOGUxYjBjM2UzNyIsIm5iZiI6MTc1Mzg5OTA2My4xMjEsInN1YiI6IjY4OGE2MDM3MzQ2NTg5ZGM4ZDg0YzBmNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6zk4DJ75WyMXut2ABnZQ1QWx0RAtxVL9g48g3FNLDNs'
-    }
-  };
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${category ? category : "now_playing"}?language=en-US&page=1`, options)
+    fetch(`https://api.themoviedb.org/3/movie/${category ? category : "now_playing"}?api_key=fe24812eab5bcea0b9ca338e1b0c3e37`)
       .then(res => res.json())
       .then(res => setApiData(res.results))
       .catch(err => console.error(err)
@@ -36,15 +32,17 @@ function TitleCards({ title, category }) {
 
 
 
+
+
   return (
     <div className='title-card'>
       <h2>{title ? title : "Popular on Netflix"}</h2>
       <div className='card-list' ref={cardRef}>
-        {apiData.map((card, index) => {
-          return <div key={index}>
+        {apiData.map((card) => {
+          return <Link className='link' to={`/movie/${card.id}`} key={card.id}>
             <img className='card' src={`https://image.tmdb.org/t/p/w500` + card.backdrop_path} alt={card.original_title} />
             <p>{card.original_title}</p>
-          </div>
+          </Link>
         })}
       </div>
     </div>

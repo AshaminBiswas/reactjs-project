@@ -1,5 +1,9 @@
 import React from 'react'
+import { useContext } from 'react'
+import { TitleCardContext } from '../../Context/TitleCardContext'
 import "./Home.css"
+
+
 import Navbar from "../../components/Navbar/Navbar"
 import hero_banner from "../../assets/hero_banner.jpg"
 import hero_title from "../../assets/hero_title.png"
@@ -9,6 +13,8 @@ import TitleCards from '../../components/TitleCards/TitleCards'
 import Footer from '../../components/Footer/Footer'
 
 function Home() {
+
+  const TitleCardState = useContext(TitleCardContext)
   return (
     <div className='home'>
       <Navbar />
@@ -16,7 +22,7 @@ function Home() {
         <img src={hero_banner} alt="hero section banner photo" className='banner-image' />
         <div className="hero-caption">
           <img src={hero_title} alt="Hero title image" className='hero-title-image' />
-          <p>Discover his ties to a secret ancient order, a young man living in modern <br /> Istanbul embark  to save the city from an immortal enemy.</p>
+          <p>Discover his ties to a secret ancient order, a young man living in  <br />  modern Istanbul embark  to save the city from an immortal enemy.</p>
           <div className='hero-buttons'>
             <button className='btn'><img src={play_icon} alt="Play button icon image" />Play</button>
             <button className='btn dark'><img src={info_icon} alt="Info button icon image" />Info</button>
@@ -26,10 +32,10 @@ function Home() {
       </div>
 
       <div className="more-cards">
-        <TitleCards title={"Blockbuster Movie"} category={"top_rated"} />
-        <TitleCards title={"Only on Netflix"} category={"popular"} />
-        <TitleCards title={"Upcoming"} category={"upcoming"} />
-        <TitleCards title={"Top Pics for You"} category={"now_playing"} />
+        <TitleCards title={"Blockbuster Movie"} category={TitleCardState.category.nowPlaying} />
+        <TitleCards title={"Only on Netflix"} category={TitleCardState.category.popular} />
+        <TitleCards title={"Upcoming"} category={TitleCardState.category.upcoming} />
+        <TitleCards title={"Top Pics for You"} category={TitleCardState.category.topRated} />
       </div>
       <Footer />
     </div>
