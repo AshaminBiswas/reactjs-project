@@ -7,18 +7,18 @@ function TitleCards({ title, category, }) {
   // console.log(apiData)
   const cardRef = useRef()
 
-  const handleWheel = (e) => {
-    e.preventDefault()
-    cardRef.current.scrollLeft += e.deltaY
-  }
+  // const handleWheel = (e) => {
+  //   e.preventDefault()
+  //   cardRef.current.scrollLeft += e.deltaY
+  // }
 
   // const data = useContext(TitleCardContext)
   // console.log(typeof data.videoData);
 
 
-  useEffect(() => {
-    cardRef.current.addEventListener("wheel", handleWheel)
-  }, [])
+  // useEffect(() => {
+  //   cardRef.current.addEventListener("wheel", handleWheel)
+  // }, [])
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${category ? category : "now_playing"}?api_key=fe24812eab5bcea0b9ca338e1b0c3e37`)
